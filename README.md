@@ -1,107 +1,72 @@
-<h4>1.Added transaction response parameters:</h4>
+<h4>1.Added transaction and clearing fields:</h4>
 <table>
   <tr>
     <th>Nmae</th>
     <th>Description</th>  
   </tr>
   <tr>
-    <td>account</td>
-    <td>Oceanpayment MID.</td>
-  </tr>
-  <tr>
-    <td>terminal</td>
-    <td>Oceanpayment TID.</td>
-  </tr>
-  <tr>
-    <td>method</td>
-    <td>Payment method<br>Output Alipay when getting Alipay<br>Output Alipay when getting Alipay_Offline<br>Output WeChatPay when getting WeChatPay<br>Output WeChatPay when getting WeChatPay_Offline</td>
-  </tr>
-  <tr>
-    <td>batch_number</td>
-    <td>Current batch number.</td>
-  </tr>
-  <tr>
-    <td>bill_number</td>
-    <td>Current order number.</td>
-  </tr>
-  <tr>
-    <td>order_amount</td>
-    <td>Amount of the transaction.</td>
-  </tr>
-  <tr>
-    <td>order_currency</td>
-    <td>Transaction currency<br>Adopt international standard ISO 4217.</td>
-  </tr>
-  <tr>
-    <td>date_time</td>
-    <td>Trading time, the format is as follows: 2018-10-15 11:05:26<br>When Sale is: transaction time<br>Void is for: void time<br>The details are the same as the Date Time printed on the receipt.</td>
+    <td>print</td>
+    <td>Whether to print receipt<br>1: Yes<br>0: no<br>The priority of passing parameters in this field is higher than that of the background configuration. If this parameter is passed, it will decide whether to print</td>
   </tr>
 </table>
 
-<h4>2.Added response parameters for machine cleaning:</h4>
+<h4>2.Added reprint API.</h4>
+<h5>Request parameters:</h5>
 <table>
   <tr>
-    <th>Nmae</th>
+    <th>Name</th>
     <th>Description</th>  
   </tr>
   <tr>
-    <td>account</td>
-    <td>Oceanpayment MID.</td>
+    <td>type</td>
+    <td>type:<br>Sale: transaction<br>Void: void.</td>
   </tr>
   <tr>
-    <td>terminal</td>
-    <td>Oceanpayment TID.</td>
+    <td>app_id</td>
+    <td>app_id assigned by Oceanpayment.</td>
   </tr>
   <tr>
-    <td>uid</td>
-    <td>UID when clearing the machine<br>The details are the same as the UID printed on the receipt</td>
+    <td>timestamp</td>
+    <td>current timestamp.</td>
   </tr>
   <tr>
-    <td>batch_number</td>
-    <td>Current batch number.</td>
+    <td>version</td>
+    <td>version number.</td>
   </tr>
   <tr>
-    <td>date_time</td>
-    <td>Clearing time, the format is: 2018-10-15 11:05:26<br>The details are the same as the Date Time printed on the receipt.</td>
+    <td>order_number</td>
+    <td>Order number, used when trading/cancelling.</td>
   </tr>
+  <tr>
+    <td>callback</td>
+    <td>Call the app to accept the return result intent package name, json format string: {"packageName":"xxxx","className":"xxxx"}, two parameters, the first is the package name path, and the second is the callback The full path of the activity.</td>
+  </tr>
+  <tr>
+    <td>sign</td>
+    <td>Splice the request parameter names according to the dictionary and sign them with sha256.</td>
+  </tr>  
 </table>
 
-<h4>3.Added response parameters for query:</h4>
+<h5>Response parameters:</h5>
 <table>
   <tr>
     <th>Nmae</th>
     <th>Description</th>  
   </tr>
   <tr>
-    <td>account</td>
-    <td>Oceanpayment MID.</td>
+    <td>type</td>
+    <td>type:<br>Sale: transaction<br>Void: void.</td>
   </tr>
   <tr>
-    <td>terminal</td>
-    <td>Oceanpayment TID.</td>
+    <td>app_id</td>
+    <td>app_id assigned by Oceanpayment.</td>
   </tr>
   <tr>
-    <td>method</td>
-    <td>Payment method<br>Output Alipay when getting Alipay<br>Output Alipay when getting Alipay_Offline<br>Output WeChatPay when getting WeChatPay<br>Output WeChatPay when getting WeChatPay_Offline</td>
+    <td>order_number</td>
+    <td>Order number, used when trading/cancelling.</td>
   </tr>
   <tr>
-    <td>batch_number</td>
-    <td>Current batch number.</td>
-  </tr>
-  <tr>
-    <td>bill_number</td>
-    <td>Current order number.</td>
-  </tr>
-  <tr>
-    <td>order_amount</td>
-    <td>Amount of the transaction.</td>
-  </tr>
-  <tr>
-    <td>order_currency</td>
-    <td>Transaction currency<br>Adopt international standard ISO 4217.</td>
-  </tr>
-  <tr>
-    <td>date_time</td>
-    <td>Trading time, the format is as follows: 2018-10-15 11:05:26<br>When Sale is: transaction time<br>Void is for: void time.</td>
+    <td>status</td>
+    <td>Reprinted result status<br>0: failed<br>1: success</td>
   </tr>
 </table>
